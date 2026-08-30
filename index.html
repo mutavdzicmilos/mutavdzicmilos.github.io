@@ -1338,6 +1338,20 @@ L$1.polylineDecorator = function (paths, options) {
             background: linear-gradient(135deg, #f4a261 0 50%, #9b5de5 50% 100%);
         }
 
+        .jungle-recommendation-marker span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border: 3px solid white;
+            border-radius: 50%;
+            background-color: #2a9d8f;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            color: white;
+            font-size: 16px;
+        }
+
         .legend-star {
             display: inline-flex;
             align-items: center;
@@ -1459,6 +1473,59 @@ L$1.polylineDecorator = function (paths, options) {
         }
 
         .search-group a:hover { text-decoration: underline; }
+
+        .jungle-section {
+            margin: 18px 0;
+            padding: 14px;
+            border: 1px solid #d8c7f0;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #fcf9ff, #fffaf3);
+        }
+
+        .jungle-section h3 {
+            margin: 0 0 6px 0;
+            color: #5b2a86;
+            font-size: 18px;
+        }
+
+        .jungle-section-intro {
+            margin: 0 0 12px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .jungle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 10px;
+        }
+
+        .jungle-tour {
+            padding: 12px;
+            border: 1px solid #eadff5;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        .jungle-tour h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+
+        .jungle-tour p {
+            margin: 4px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .jungle-tour a {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+        }
 
         .ticket-section {
             margin-top: 18px;
@@ -1653,6 +1720,7 @@ L$1.polylineDecorator = function (paths, options) {
             <div class="legend-item"><span class="legend-star first">★</span> Mili</div>
             <div class="legend-item"><span class="legend-star second">★</span> Tea</div>
             <div class="legend-item"><span class="legend-star both">★</span> Obe</div>
+            <div class="legend-item">🌿 Jungle izlet</div>
             <div class="legend-item"><strong>1–10</strong> Redosled tačaka rute</div>
             <div class="legend-item">👥 Preklapanje sa prijateljima</div>
         </div>
@@ -1679,6 +1747,54 @@ L$1.polylineDecorator = function (paths, options) {
     <div class="reference-card">
         <h2>📋 Spisak za Google pretragu i ulaznice</h2>
         <p class="reference-card-intro">Klik na naziv otvara Google pretragu. Cene i pravila rezervacije u tabeli ispod odnose se na proverene ili jasno označene okvirne podatke; pre puta proveriti zvanični sajt zbog promena.</p>
+        <div class="jungle-section">
+            <h3>🌿 Jungle — opcioni izleti</h3>
+            <p class="jungle-section-intro">Ovo su dodatne ponude koje nisu rezervisane. Cene su iz dostavljenog Jungle programa; proveriti termin, dostupnost, tačan itinerer i šta je uključeno pre uplate.</p>
+            <div class="jungle-grid">
+                <article class="jungle-tour">
+                    <h4>Kuala Lumpur City Tour i Batu pećine — 40 EUR</h4>
+                    <p><strong>Lokacija:</strong> Kuala Lumpur, Malezija — van vaše Bali/Lombok rute.</p>
+                    <p><strong>Obuhvata:</strong> organizovan prevoz po itinereru i lokalnog vodiča na engleskom. Batu pećine, Masjid Jamek, Kineska četvrt, Merdeka trg, zgrada Sultan Abdul Samad i Heli Lounge bar.</p>
+                    <a href="https://www.google.com/search?q=Kuala+Lumpur+City+Tour+Batu+Caves" target="_blank" rel="noopener noreferrer">Google pretraga lokacije</a>
+                </article>
+                <article class="jungle-tour">
+                    <h4>Detox izlet — 55 EUR</h4>
+                    <p><strong>Najbliže:</strong> Ubud / HOKYY.</p>
+                    <p><strong>Obuhvata:</strong> Tirta Empul, Bali ljuljašku, organizovan prevoz, ulaznice za navedene lokalitete i vodiča na engleskom. Jungle Fish bar, hrana i piće nisu uključeni.</p>
+                    <a href="https://www.google.com/search?q=Tirta+Empul+Bali+Swing+Jungle+Fish" target="_blank" rel="noopener noreferrer">Google pretraga izleta</a>
+                </article>
+                <article class="jungle-tour">
+                    <h4>Besakih hram, Tirta Gangga i Virgin Beach — 45 EUR</h4>
+                    <p><strong>Najbliže:</strong> Sidemen / Padang Bai; polazak je naveden iz Ubuda.</p>
+                    <p><strong>Obuhvata:</strong> organizovan prevoz, ulaznice za navedene lokalitete i vodiča na engleskom.</p>
+                    <a href="https://www.google.com/search?q=Besakih+Tirta+Gangga+Virgin+Beach+Bali" target="_blank" rel="noopener noreferrer">Google pretraga izleta</a>
+                </article>
+                <article class="jungle-tour">
+                    <h4>Ubud, šuma majmuna, Goa Gajah, bašta začina i Kintamani — 50 EUR</h4>
+                    <p><strong>Najbliže:</strong> Ubud / HOKYY.</p>
+                    <p><strong>Obuhvata:</strong> Ubud Monkey Forest, Goa Gajah, baštu začina, Kintamani, organizovan prevoz, ulaznice i vodiča na engleskom.</p>
+                    <a href="https://www.google.com/search?q=Ubud+Monkey+Forest+Goa+Gajah+Kintamani" target="_blank" rel="noopener noreferrer">Google pretraga izleta</a>
+                </article>
+                <article class="jungle-tour">
+                    <h4>Nusa Dua i Jimbaran — 50 EUR</h4>
+                    <p><strong>Lokacija:</strong> južni Bali; opcioni izlet iz vaše rute.</p>
+                    <p><strong>Obuhvata:</strong> povratni transfer, vožnju tradicionalnim brodićem i večeru na Jimbaran plaži. Ponuda ne navodi tačne restorane ni satnicu.</p>
+                    <a href="https://www.google.com/search?q=Nusa+Dua+Jimbaran+sunset+boat+Bali" target="_blank" rel="noopener noreferrer">Google pretraga izleta</a>
+                </article>
+                <article class="jungle-tour">
+                    <h4>Nusa Penida — 75 EUR</h4>
+                    <p><strong>Lokacija:</strong> ostrvo jugoistočno od Balija; nije deo vaše rezervisane rute.</p>
+                    <p><strong>Obuhvata:</strong> povratni transfer do luke, brzi čamac, obilazak ostrva i lokalnog vodiča. Mili je ranije upozorila da su putevi zahtevni; potvrditi tačnu rutu i uslove.</p>
+                    <a href="https://www.google.com/search?q=Nusa+Penida+tour+Bali" target="_blank" rel="noopener noreferrer">Google pretraga izleta</a>
+                </article>
+                <article class="jungle-tour">
+                    <h4>Padang Padang, Suluban, Uluwatu hram i Kecak — 50 EUR</h4>
+                    <p><strong>Najbliže:</strong> Uluwatu / Surfside.</p>
+                    <p><strong>Obuhvata:</strong> Padang Padang plažu, Suluban, Uluwatu hram, Kecak ples, organizovan prevoz, ulaznice i vodiča na engleskom.</p>
+                    <a href="https://www.google.com/search?q=Padang+Padang+Suluban+Uluwatu+Kecak+tour" target="_blank" rel="noopener noreferrer">Google pretraga izleta</a>
+                </article>
+            </div>
+        </div>
         <div class="search-groups">
             <div class="search-group">
                 <h3>Sanur</h3>
@@ -2257,60 +2373,21 @@ L$1.polylineDecorator = function (paths, options) {
     const map = L.map('map', { preferCanvas: true }).setView([-8.60, 115.65], 9);
 
     const mapStatus = document.getElementById('map-status');
-    const baseLayers = {
-        'Esri World Street Map': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
-        }),
-        'CARTO Light': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-            subdomains: 'abcd',
-            maxZoom: 20
-        }),
-        'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        })
-    };
-
-    let activeBaseLayer = baseLayers['Esri World Street Map'];
-    let primaryTileErrors = 0;
-    let fallbackTileErrors = 0;
-    const activateBaseLayer = (layer, message) => {
-        if (activeBaseLayer !== layer) {
-            map.removeLayer(activeBaseLayer);
-            layer.addTo(map);
-            activeBaseLayer = layer;
-        }
-        mapStatus.textContent = message;
-        mapStatus.classList.add('visible');
-    };
+    const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    let tileErrors = 0;
     const clearMapStatus = () => mapStatus.classList.remove('visible');
 
-    activeBaseLayer.addTo(map);
-    activeBaseLayer.on('tileerror', () => {
-        primaryTileErrors += 1;
-        if (primaryTileErrors >= 3) activateBaseLayer(baseLayers['CARTO Light'], 'Esri podloga nije dostupna; koristi se rezervna CARTO podloga.');
-    });
-    activeBaseLayer.on('tileload', () => {
-        primaryTileErrors = 0;
-        clearMapStatus();
-    });
-    baseLayers['CARTO Light'].on('tileerror', () => {
-        fallbackTileErrors += 1;
-        if (fallbackTileErrors >= 3) activateBaseLayer(baseLayers.OpenStreetMap, 'CARTO podloga nije dostupna; koristi se OpenStreetMap podloga.');
-    });
-    baseLayers['CARTO Light'].on('tileload', () => {
-        fallbackTileErrors = 0;
-        clearMapStatus();
-    });
-    baseLayers.OpenStreetMap.on('tileerror', () => {
-        fallbackTileErrors += 1;
-        if (fallbackTileErrors >= 3) {
-            mapStatus.textContent = 'Kartografske podloge nisu dostupne bez internet konekcije.';
+    tileLayer.on('tileerror', () => {
+        tileErrors += 1;
+        if (tileErrors >= 3) {
+            mapStatus.textContent = 'OpenStreetMap podloga zahteva internet konekciju.';
             mapStatus.classList.add('visible');
         }
     });
-    baseLayers.OpenStreetMap.on('tileload', () => {
-        fallbackTileErrors = 0;
+    tileLayer.on('tileload', () => {
+        tileErrors = 0;
         clearMapStatus();
     });
 
@@ -2403,20 +2480,73 @@ L$1.polylineDecorator = function (paths, options) {
         }
     ];
 
+    const jungleStops = [
+        {
+            pos: [-8.414934, 115.316026],
+            title: "Jungle: Detox izlet",
+            price: "55 EUR",
+            near: "Najbliže: Ubud / HOKYY",
+            desc: "Tirta Empul, Bali ljuljaška i Jungle Fish bar.",
+            overlap: "Nema direktnog preklapanja sa Mili/Tea markerom; paket je dodatna ponuda oko Ubuda.",
+            query: "Tirta Empul Bali Swing Jungle Fish"
+        },
+        {
+            pos: [-8.323242, 115.446396],
+            title: "Jungle: Besakih, Tirta Gangga i Virgin Beach",
+            price: "45 EUR",
+            near: "Najbliže: Sidemen / Padang Bai",
+            desc: "Celodnevni paket iz Ubuda sa prevozom, ulaznicama i vodičem.",
+            overlap: "Tea je posebno preporučila Besakih i Tirta Gangga; Virgin Beach nije imala kao zaseban marker.",
+            query: "Besakih Tirta Gangga Virgin Beach Bali"
+        },
+        {
+            pos: [-8.523693, 115.286689],
+            title: "Jungle: Ubud, Monkey Forest, Goa Gajah i Kintamani",
+            price: "50 EUR",
+            near: "Najbliže: Ubud / HOKYY",
+            desc: "Celodnevni paket sa šumom majmuna, Goa Gajah, baštom začina i Kintamani vidikovcem.",
+            overlap: "Tea je preporučila Goa Gajah; ostale tačke paketa nisu zasebno preporučene na mapi.",
+            query: "Ubud Monkey Forest Goa Gajah Kintamani"
+        },
+        {
+            pos: [-8.801678, 115.223931],
+            title: "Jungle: Nusa Dua i Jimbaran",
+            price: "50 EUR",
+            near: "Opcioni izlet na južnom Baliju",
+            desc: "Nusa Dua, vožnja brodićem, zalazak sunca i večera na Jimbaran plaži.",
+            overlap: "Nema direktnog preklapanja sa postojećim Mili/Tea preporukama.",
+            query: "Nusa Dua Jimbaran sunset boat Bali"
+        },
+        {
+            pos: [-8.745588, 115.534681],
+            title: "Jungle: Nusa Penida",
+            price: "75 EUR",
+            near: "Opcija van vaše rute",
+            desc: "Brzi čamac, obilazak ostrva i lokalni vodič.",
+            overlap: "Mili je ranije upozorila da su putevi zahtevni; ovo je upozorenje, ne preporuka.",
+            query: "Nusa Penida tour Bali"
+        },
+        {
+            pos: [-8.829369, 115.084343],
+            title: "Jungle: Padang Padang, Suluban, Uluwatu i Kecak",
+            price: "50 EUR",
+            near: "Najbliže: Uluwatu / Surfside",
+            desc: "Padang Padang, Suluban, Uluwatu hram i Kecak ples.",
+            overlap: "Obe su preporučile Uluwatu hram; Mili je dodatno preporučila obilazak plaža.",
+            query: "Padang Padang Suluban Uluwatu Kecak tour"
+        }
+    ];
+
     const recommendationLayer = L.layerGroup();
     const secondRecommendationLayer = L.layerGroup();
     const sharedRecommendationLayer = L.layerGroup();
-    L.control.layers(baseLayers, {
+    const jungleLayer = L.layerGroup();
+    L.control.layers(null, {
         '⭐ Mili (samo njene)': recommendationLayer,
         '★ Tea (samo njene)': secondRecommendationLayer,
-        '💜 Obe preporučile': sharedRecommendationLayer
+        '💜 Obe preporučile': sharedRecommendationLayer,
+        '🌿 Jungle izleti': jungleLayer
     }, { collapsed: true }).addTo(map);
-    map.on('baselayerchange', event => {
-        activeBaseLayer = event.layer;
-        primaryTileErrors = 0;
-        fallbackTileErrors = 0;
-        clearMapStatus();
-    });
 
     routeStops.forEach(m => {
         const locationLink = m.accommodation
@@ -2475,6 +2605,19 @@ L$1.polylineDecorator = function (paths, options) {
         L.marker(m.pos, { icon: recommendationIcon })
             .addTo(sharedRecommendationLayer)
             .bindPopup(`<b>💜 ${m.title}</b><br><strong>Preporučile obe</strong><br>${m.near}<br>${m.desc}<br><strong>Šta je rekla Mili:</strong> ${m.miliInfo}<br><strong>Šta je rekla Tea:</strong> ${m.teaInfo}<br><a href="${mapsLink}" target="_blank" rel="noopener noreferrer">Proveri lokaciju u Google Maps-u</a>`);
+    });
+
+    jungleStops.forEach(m => {
+        const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(m.query)}`;
+        const jungleIcon = L.divIcon({
+            className: 'recommendation-marker jungle-recommendation-marker',
+            html: '<span>🌿</span>',
+            iconSize: [36, 36],
+            iconAnchor: [18, 18]
+        });
+        L.marker(m.pos, { icon: jungleIcon })
+            .addTo(jungleLayer)
+            .bindPopup(`<b>🌿 ${m.title}</b><br><strong>Cena: ${m.price}</strong><br>${m.near}<br>${m.desc}<br><strong>Preklapanje:</strong> ${m.overlap}<br><a href="${mapsLink}" target="_blank" rel="noopener noreferrer">Proveri lokaciju u Google Maps-u</a>`);
     });
 
     map.fitBounds(routeStops.map(stop => stop.pos), { padding: [30, 30], maxZoom: 9 });
