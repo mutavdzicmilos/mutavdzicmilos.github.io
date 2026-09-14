@@ -1212,6 +1212,27 @@ L$1.polylineDecorator = function (paths, options) {
         header h1 { margin: 0 0 10px 0; font-size: 28px; }
         header p { margin: 0; opacity: 0.9; }
 
+        .header-links {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .header-link {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.16);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .header-link:hover { background: rgba(255,255,255,0.28); }
+
         #map-container {
             background: white;
             padding: 15px;
@@ -1262,6 +1283,70 @@ L$1.polylineDecorator = function (paths, options) {
         }
 
         .map-status.visible { display: block; }
+
+        .live-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            border: 1px solid #b9e6dc;
+            border-radius: 9px;
+            background: #effbf8;
+            color: #155f53;
+        }
+
+        .live-status-copy {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .live-status-title { font-weight: 700; }
+        .live-status-detail { color: #477b73; font-size: 12px; }
+
+        .live-dot {
+            width: 12px;
+            height: 12px;
+            flex: 0 0 12px;
+            border-radius: 50%;
+            background: #e63946;
+            box-shadow: 0 0 0 0 rgba(230,57,70,0.55);
+            animation: live-pulse 1.8s infinite;
+        }
+
+        @keyframes live-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(230,57,70,0.55); }
+            70% { box-shadow: 0 0 0 9px rgba(230,57,70,0); }
+            100% { box-shadow: 0 0 0 0 rgba(230,57,70,0); }
+        }
+
+        .live-plan-note {
+            margin: 0 0 12px 0;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .live-marker {
+            background: transparent;
+            border: 0;
+        }
+
+        .live-marker span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border: 3px solid white;
+            border-radius: 50%;
+            background: #e63946;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            color: white;
+            font-size: 17px;
+        }
 
         .leaflet-container { font: inherit; }
         .leaflet-control-zoom { margin: 10px; }
@@ -1705,11 +1790,22 @@ L$1.polylineDecorator = function (paths, options) {
     <header>
         <h1>Bali & Lombok Putovanje 2026</h1>
         <p>Milica & Miloš Mutavdžić | 18. Septembar – 15. Oktobar 2026.</p>
+        <div class="header-links">
+            <a class="header-link" href="https://drive.google.com/drive/folders/1kseXPA5aRSV65nNVNfgKSKn2b_ZkA0_L?usp=sharing" target="_blank" rel="noopener noreferrer">📸 Drive slike / Zatraži pristup</a>
+        </div>
     </header>
 
     <!-- MAPA -->
     <div id="map-container">
         <h2 id="map-title">🗺️ Interaktivna Mapa Rute (redosled 1–10)</h2>
+        <div id="live-status" class="live-status">
+            <span class="live-dot"></span>
+            <span class="live-status-copy">
+                <span id="live-status-title" class="live-status-title">Planirana live tačka se učitava…</span>
+                <span id="live-status-detail" class="live-status-detail"></span>
+            </span>
+        </div>
+        <p class="live-plan-note">📍 Ovo je procena prema planu puta, ne GPS praćenje uživo. Tačka se osvežava prema trenutnom datumu i vremenu na uređaju.</p>
         <div id="map">
             <div id="map-status" class="map-status">Mapa je učitana, ali podloga zahteva internet konekciju.</div>
         </div>
@@ -2373,8 +2469,8 @@ L$1.polylineDecorator = function (paths, options) {
     const map = L.map('map', { preferCanvas: true }).setView([-8.60, 115.65], 9);
 
     const mapStatus = document.getElementById('map-status');
-    const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
+    const tileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '&copy; Esri, DeLorme, NAVTEQ, USGS, Intermap, NRCAN, Esri Japan, METI, Esri China, Esri (Thailand), TomTom'
     }).addTo(map);
     let tileErrors = 0;
     const clearMapStatus = () => mapStatus.classList.remove('visible');
@@ -2382,7 +2478,7 @@ L$1.polylineDecorator = function (paths, options) {
     tileLayer.on('tileerror', () => {
         tileErrors += 1;
         if (tileErrors >= 3) {
-            mapStatus.textContent = 'OpenStreetMap podloga zahteva internet konekciju.';
+            mapStatus.textContent = 'Esri podloga zahteva internet konekciju.';
             mapStatus.classList.add('visible');
         }
     });
@@ -2417,6 +2513,123 @@ L$1.polylineDecorator = function (paths, options) {
         { number: 9, pos: points.airportBali, title: "9. Bali Denpasar (DPS)", desc: "Dolazak lokalnim letom 12. Okt" },
         { number: 10, pos: points.uluwatu, title: "10. Uluwatu (Surfside Resort)", desc: "12. Okt - 14. Okt", accommodation: true }
     ];
+
+    const liveStatusTitle = document.getElementById('live-status-title');
+    const liveStatusDetail = document.getElementById('live-status-detail');
+    const liveIcon = L.divIcon({
+        className: 'live-marker',
+        html: '<span>📍</span>',
+        iconSize: [40, 40],
+        iconAnchor: [20, 20]
+    });
+    const livePlan = [
+        {
+            start: '2026-09-18T23:45:00+02:00',
+            end: '2026-09-19T22:45:00+08:00',
+            pos: points.airportBali,
+            title: 'Na putu ka Baliju',
+            detail: 'Letovi BEG → DXB → DPS'
+        },
+        {
+            start: '2026-09-19T22:45:00+08:00',
+            end: '2026-09-26T12:00:00+08:00',
+            pos: points.sanur,
+            title: 'Sanur — Kutus Bali',
+            detail: '19–26. septembar'
+        },
+        {
+            start: '2026-09-26T12:00:00+08:00',
+            end: '2026-10-03T12:00:00+08:00',
+            pos: points.ubud,
+            title: 'Ubud — HOKYY Accommodation',
+            detail: '26. septembar–3. oktobar'
+        },
+        {
+            start: '2026-10-03T12:00:00+08:00',
+            end: '2026-10-06T10:35:00+08:00',
+            pos: points.sidemen,
+            title: 'Sidemen — Jisa Sidemen',
+            detail: '3–6. oktobar'
+        },
+        {
+            start: '2026-10-06T10:35:00+08:00',
+            end: '2026-10-10T10:00:00+08:00',
+            pos: points.giliAir,
+            title: 'Gili Air — Jago Gili Air',
+            detail: '6–10. oktobar'
+        },
+        {
+            start: '2026-10-10T10:00:00+08:00',
+            end: '2026-10-12T09:30:00+08:00',
+            pos: points.kutaLombok,
+            title: 'Kuta Lombok — Barrel Homestay',
+            detail: '10–12. oktobar'
+        },
+        {
+            start: '2026-10-12T09:30:00+08:00',
+            end: '2026-10-12T12:10:00+08:00',
+            pos: points.airportLombok,
+            title: 'Transfer i let sa LOP-a',
+            detail: 'TransNusa 5253 → DPS'
+        },
+        {
+            start: '2026-10-12T12:10:00+08:00',
+            end: '2026-10-14T16:30:00+08:00',
+            pos: points.uluwatu,
+            title: 'Uluwatu — Surfside Resort',
+            detail: '12–14. oktobar'
+        },
+        {
+            start: '2026-10-14T16:30:00+08:00',
+            end: '2026-10-15T12:55:00+02:00',
+            pos: points.airportBali,
+            title: 'Povratak ka aerodromu DPS',
+            detail: 'Povratni let 14/15. oktobar'
+        }
+    ];
+    let liveMarker = null;
+
+    function formatLiveTime(date) {
+        return new Intl.DateTimeFormat('sr-Latn-RS', {
+            dateStyle: 'short',
+            timeStyle: 'short'
+        }).format(date);
+    }
+
+    function updateLivePlan() {
+        const now = new Date();
+        const firstStart = new Date(livePlan[0].start);
+        const lastEnd = new Date(livePlan[livePlan.length - 1].end);
+        const phase = livePlan.find(item => now >= new Date(item.start) && now < new Date(item.end));
+
+        if (!phase) {
+            if (now < firstStart) {
+                liveStatusTitle.textContent = 'Putovanje još nije počelo';
+                liveStatusDetail.textContent = `Prva etapa počinje ${formatLiveTime(firstStart)}.`;
+            } else if (now >= lastEnd) {
+                liveStatusTitle.textContent = 'Putovanje je završeno';
+                liveStatusDetail.textContent = `Planirani kraj: ${formatLiveTime(lastEnd)}.`;
+            }
+            if (liveMarker) {
+                map.removeLayer(liveMarker);
+                liveMarker = null;
+            }
+            return;
+        }
+
+        liveStatusTitle.textContent = `📍 Sada po planu: ${phase.title}`;
+        liveStatusDetail.textContent = `${phase.detail} · osveženo ${formatLiveTime(now)}`;
+        const popup = `<b>📍 Planirana live tačka</b><br>${phase.title}<br>${phase.detail}<br><small>Lokacija je izvedena iz plana puta, nije GPS praćenje.</small>`;
+        if (!liveMarker) {
+            liveMarker = L.marker(phase.pos, { icon: liveIcon, zIndexOffset: 2000 }).addTo(map);
+        } else {
+            liveMarker.setLatLng(phase.pos);
+        }
+        liveMarker.bindPopup(popup);
+    }
+
+    updateLivePlan();
+    window.setInterval(updateLivePlan, 60000);
 
     const landRouteLinks = [
         { fromNumber: 0, from: points.airportBali, to: points.sanur, label: "DPS → 1 Kutus Bali" },
